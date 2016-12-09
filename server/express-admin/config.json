@@ -1,0 +1,16 @@
+{
+    "pg": {
+        "database": "faraday",
+        "user": "faraday",
+        "password": "faraday",
+        "schema": "public"
+    },
+    "server": {
+        "port": 5000
+    },
+    "app": {
+        "layouts": true,
+        "themes": true,
+        "languages": true
+    }
+}

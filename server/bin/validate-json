@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+'use strict';
+
+/**
+ * Validate a JSON file against a JSON Schema
+ */
+
+const program = require('commander');
+const chalk = require('chalk');
+const tv4 = require('tv4');
+const fs = require('fs');
+
+function read_json_file(file_name) {
+    return JSON.parse(fs.readFileSync(file_name));
+}
+
+program
+    .version('0.0.1')
+    .option('-j, --json <file>', 'JSON file to validate')
+    .option('-s, --schema <file>', 'Schema file')
+    .option('-v, --verbose', 'Verbose output')
+    .parse(process.argv);
+
+const jsonFileContent = read_json_file(program.json);
+const schemaFileContent = read_json_file(program.schema);
+const result = tv4.validateResult(jsonFileContent, schemaFileContent);
+
+if (program.verbose) {
+    console.log("SCHEMA", JSON.stringify(schemaFileContent, null, 4));
+    console.log("FILE", JSON.stringify(jsonFileContent, null, 4));
+    console.log("RESULT", JSON.stringify(result, null, 4));
+}
+
+if (result.valid) {
+    console.log(chalk.green.bold('Valid'));
+    process.exit(0);
+} else {
+    console.log(chalk.red.bold(result.error.message));
+    console.log("At", result.error.schemaPath);
+    process.exit(1);
+}
