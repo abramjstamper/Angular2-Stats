@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'scoreboard';
+  src: url('scoreboard.woff') format('woff'), /* Modern browsers */
+       url('scoreboard.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+.scoreboard { font-family: 'scoreboard'; }
