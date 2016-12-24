@@ -1,7 +1,20 @@
 @font-face {
   font-family: 'scoreboard';
-  src: url('scoreboard.woff') format('woff'), /* Modern browsers */
-       url('scoreboard.ttf')  format('truetype'), /* Safari, Android, iOS */
+  src: url('fonts/scoreboard.eot'); /* IE9 Compat Modes */
+  src: url('fonts/scoreboard.woff') format('woff'), /* Modern browsers */
+       url('fonts/scoreboard.ttf')  format('truetype'); /* Safari, Android, iOS */
 }
 
-.scoreboard { font-family: 'scoreboard'; }
+.scoreboard_score { 
+  font-family: 'scoreboard';
+  font-size: 300%;
+ }
+
+ .scoreboard_font { 
+  font-family: 'scoreboard';
+ }
+
+#page_container {
+        /* Size of largest container or bigger */
+        width:1280px;
+      }
