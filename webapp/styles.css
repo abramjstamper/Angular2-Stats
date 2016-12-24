@@ -14,7 +14,12 @@
   font-family: 'scoreboard';
  }
 
+ .period { 
+  font-family: 'scoreboard';
+  font-size: 125%;
+ }
+
 #page_container {
         /* Size of largest container or bigger */
-        width:1280px;
+        min-width:1280px;
       }

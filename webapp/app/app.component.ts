@@ -11,6 +11,6 @@ export class AppComponent {
   period = 1;
   homeScore = 0;
   visitorScore = 0;
-
-
+  visitorTeamName = "Western";
+  homeTeamName = "Kokomo";
 }
