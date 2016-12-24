@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MaterializeDirective } from "angular2-materialize";
+import { TimerComponent } from './timer/timer';
 
 import { AppComponent }  from './app.component';
 
@@ -9,7 +10,8 @@ import { AppComponent }  from './app.component';
   imports:      [ BrowserModule ],
   declarations: [
     AppComponent,
-    MaterializeDirective
+    MaterializeDirective,
+    TimerComponent
     ],
   bootstrap:    [ AppComponent ]
 })

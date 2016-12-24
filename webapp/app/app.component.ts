@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { TimerComponent } from './timer/timer';
 
 @Component({
   moduleId: module.id,
@@ -6,6 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+@ViewChild(TimerComponent) timer: TimerComponent;
+
   title = "Stats";
 
   period = 1;
@@ -13,4 +17,6 @@ export class AppComponent {
   visitorScore = 0;
   visitorTeamName = "Western";
   homeTeamName = "Kokomo";
+
+  secondsPerQuarter = 480;
 }

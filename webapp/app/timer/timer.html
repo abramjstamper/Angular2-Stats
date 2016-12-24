@@ -1,0 +1,21 @@
+<div *ngIf="timer">
+        <span *ngIf="timeInSeconds && timeInSeconds > 0" class="scoreboard_score">{{timer.displayTime}}</span>
+    <div class="card-action" *ngIf="timeInSeconds && timeInSeconds > 0">
+        <a class="btn waves-effect waves-light orange" (click)="initTimer()" *ngIf="!timer.runTimer && (timer.hasStarted || timer.hasFinished) || timer.hasFinished">
+          <!--  <ion-icon name="refresh"></ion-icon> -->
+            Reset
+        </a>
+        <a class="btn waves-effect waves-light red" (click)="pauseTimer()" *ngIf="timer.runTimer && timer.hasStarted && !timer.hasFinished">
+          <!--  <ion-icon name="pause"></ion-icon> -->
+            Pause
+        </a>      
+        <a class="btn waves-effect waves-light green" (click)="resumeTimer()" *ngIf="!timer.runTimer && timer.hasStarted && !timer.hasFinished">
+           <!-- <ion-icon name="play"></ion-icon> -->
+            Resume
+        </a>      
+        <a class="btn waves-effect waves-light green" (click)="startTimer()" *ngIf="!timer.hasStarted">
+           <!-- <ion-icon name="play"></ion-icon> -->
+            Start
+        </a>
+    </div>
+</div>  

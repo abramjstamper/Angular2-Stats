@@ -16,8 +16,7 @@
     <div class="card-panel">
       <div class="center">
         <div class="period">Period: {{ period }}</div>
-        <div class="scoreboard_score">00:00</div>
-        <a class="waves-effect waves-light btn">Toogle Timer</a>
+        <timer #timer [timeInSeconds]="secondsPerQuarter"></timer>
       </div>
     </div>
   </div>
