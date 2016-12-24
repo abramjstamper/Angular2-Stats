@@ -1,3 +1,9 @@
+/* 
+ * Code was adopted from the URL below
+ * http://plnkr.co/edit/RwCZ1JKE3NldVL9YwNWK?p=preview
+ * http://www.codingandclimbing.co.uk/blog/ionic-2-simple-countdown-timer-25
+*/
+
 import {Component, Input} from '@angular/core';
 import { ITimer } from './ittimer';
 
