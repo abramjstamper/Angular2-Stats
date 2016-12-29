@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { TimerComponent } from './timer/timer';
+import { RosterComponent } from './roster/roster';
 
 @Component({
   moduleId: module.id,
@@ -9,6 +10,7 @@ import { TimerComponent } from './timer/timer';
 export class AppComponent {
 
 @ViewChild(TimerComponent) timer: TimerComponent;
+@ViewChild(RosterComponent) roster: RosterComponent;
 
   title = "Stats";
 
