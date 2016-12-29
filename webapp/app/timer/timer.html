@@ -1,21 +1,20 @@
-<div *ngIf="timer">
-        <span *ngIf="timeInSeconds && timeInSeconds > 0" class="scoreboard_score">{{timer.displayTime}}</span>
-    <div class="card-action" *ngIf="timeInSeconds && timeInSeconds > 0">
-        <a class="btn waves-effect waves-light orange" (click)="initTimer()" *ngIf="!timer.runTimer && (timer.hasStarted || timer.hasFinished) || timer.hasFinished">
-          <!--  <ion-icon name="refresh"></ion-icon> -->
+<div>
+        <span class="scoreboard_score">{{getDisplayTime()}}</span>
+    <div class="card-action" *ngIf="getTimer().secondsRemaining && getTimer().secondsRemaining > 0">
+        <!-- <a class="btn waves-effect waves-light orange" (click)="initTimer()" *ngIf="!getTimer().runTimer && (getTimer().hasStarted || getTimer().hasFinished) || getTimer().hasFinished">
             Reset
-        </a>
-        <a class="btn waves-effect waves-light red" (click)="pauseTimer()" *ngIf="timer.runTimer && timer.hasStarted && !timer.hasFinished">
+        </a> -->
+        <a class="btn waves-effect waves-light red" (click)="pauseTimer()" *ngIf="getTimer().runTimer && getTimer().hasStarted && !getTimer().hasFinished">
           <!--  <ion-icon name="pause"></ion-icon> -->
             Pause
         </a>      
-        <a class="btn waves-effect waves-light green" (click)="resumeTimer()" *ngIf="!timer.runTimer && timer.hasStarted && !timer.hasFinished">
+        <a class="btn waves-effect waves-light green" (click)="resumeTimer()" *ngIf="!getTimer().runTimer && getTimer().hasStarted && !getTimer().hasFinished">
            <!-- <ion-icon name="play"></ion-icon> -->
             Resume
         </a>      
-        <a class="btn waves-effect waves-light green" (click)="startTimer()" *ngIf="!timer.hasStarted">
+        <a class="btn waves-effect waves-light green" (click)="startTimer()" *ngIf="!getTimer().hasStarted">
            <!-- <ion-icon name="play"></ion-icon> -->
             Start
         </a>
     </div>
-</div>  
+</div> 
