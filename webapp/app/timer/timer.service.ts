@@ -5,6 +5,19 @@ import { ITimer } from './ittimer';
 export class TimerService {
 
   private timer: ITimer;
+  private period: number;
+
+  getPeriod(){
+    return this.period;
+  }
+
+  setPeriod(period : number){
+    this.period = period;
+  }
+
+  incrementPeriod(){
+    this.period += 1;
+  }
 
   createTimer(timeInSeconds: number) {
     if (!timeInSeconds) { timeInSeconds = 0; }

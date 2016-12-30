@@ -22,6 +22,22 @@ export class TimerComponent {
 
     ngOnInit() {
         this.timerService.createTimer(this.timeInSeconds);
+        this.timerService.setPeriod(1);
+    }
+
+    newPeriod() {
+        this.timerService.incrementPeriod();
+        this.timerService.createTimer(this.timeInSeconds);
+    }
+
+    canStartNextPeriod(){
+        if(this.timerService.getPeriod() < 4)
+            return this.getTimer().hasStarted && (!this.getTimer().runTimer || this.getTimer().hasFinished)
+        return false;
+    }
+
+    getPeriod() {
+        return this.timerService.getPeriod();
     }
 
     getTimer() {

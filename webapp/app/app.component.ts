@@ -14,11 +14,10 @@ export class AppComponent {
 
   title = "Stats";
 
-  period = 1;
   homeScore = 0;
   visitorScore = 0;
   visitorTeamName = "Western";
   homeTeamName = "Kokomo";
 
-  secondsPerQuarter = 480;
+  secondsPerQuarter = 5;
 }

@@ -10,16 +10,9 @@
         <span class="scoreboard_score">{{ homeScore }}</span>
       </div>
     </div>
+  </div>
 
-  </div>
-  <div class="col s4">
-    <div class="card-panel">
-      <div class="center">
-        <div class="period">Period: {{ period }}</div>
-        <timer #timer [timeInSeconds]="secondsPerQuarter"></timer>
-      </div>
-    </div>
-  </div>
+  <timer [timeInSeconds]="secondsPerQuarter"></timer>
 
   <!-- visiting team scoreboard -->
   <div class="col s2">
