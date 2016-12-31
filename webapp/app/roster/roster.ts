@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Team } from '../shared/Team';
 import { Player } from '../shared/Player';
 
-import { TimerComponent } from '../timer/timer';
+import { TimerService } from '../shared/timer.service';
 
 @Component({
     selector: 'roster',
@@ -10,7 +10,15 @@ import { TimerComponent } from '../timer/timer';
     templateUrl: './app/roster/roster.html'
 })
 export class RosterComponent {
-    constructor() { }
+
+    runTimer: boolean;
+
+    constructor(private timerService: TimerService) {
+        timerService.runTimer$.subscribe(
+            runTimer => {
+                this.runTimer = runTimer;
+            });
+    }
 
     team: Team;
     playersInGame: Player[];

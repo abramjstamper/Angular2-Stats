@@ -1,5 +1,23 @@
 <div class="col s3">
-  <div class="card-panel">
+  <div class="card-panel" *ngIf="runTimer">
+    <a class="btn waves-effect waves-light blue-grey lighten-4" [ngClass]="team.textColor">{{ team.displayName }}</a>
+    <table>
+      <thead>
+        <tr>
+          <th data-field="id">Name</th>
+          <th data-field="name">Number</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let player of team.players">
+          <td [ngClass]="team.textColor">{{ player.firstName[0] + " " + player.lastName }}</td>
+          <td><a class="btn waves-effect waves-light blue-grey lighten-4" [ngClass]="team.textColor" >{{ player.homeNumber }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-panel" *ngIf="!runTimer">
     <a class="btn waves-effect waves-light blue-grey lighten-4" [ngClass]="team.textColor">{{ team.displayName }}</a>
     <table>
       <thead>

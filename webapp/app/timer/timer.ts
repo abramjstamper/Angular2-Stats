@@ -5,14 +5,12 @@
 */
 
 import { Component, Input } from '@angular/core';
-import { ITimer } from './ittimer';
-import { TimerService } from './timer.service';
+import { TimerService } from '../shared/timer.service';
 
 @Component({
     selector: 'timer',
     //from root web server directory, not timer's component directory
-    templateUrl: './app/timer/timer.html',
-    providers: [TimerService]
+    templateUrl: './app/timer/timer.html'
 })
 export class TimerComponent {
 
@@ -30,9 +28,11 @@ export class TimerComponent {
         this.timerService.createTimer(this.timeInSeconds);
     }
 
-    canStartNextPeriod(){
-        if(this.timerService.getPeriod() < 4)
-            return this.getTimer().hasStarted && (!this.getTimer().runTimer || this.getTimer().hasFinished)
+    canStartNextPeriod() {
+        if (this.timerService.getPeriod() < 4) {
+            if (this.timerService.getTimer().secondsRemaining == 0)
+                return this.getTimer().hasStarted && (!this.getTimer().runTimer || this.getTimer().hasFinished)
+        }
         return false;
     }
 
@@ -56,7 +56,7 @@ export class TimerComponent {
         this.timerService.resumeTimer();
     }
 
-    getDisplayTime(){
+    getDisplayTime() {
         return this.timerService.getDisplayTime();
     }
 
