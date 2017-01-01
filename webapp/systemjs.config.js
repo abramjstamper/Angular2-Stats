@@ -24,11 +24,13 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
       // other libraries
-      'rxjs':                      'npm:rxjs',
+      'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       'materialize-css': 'npm:materialize-css',
       'angular2-materialize': 'npm:angular2-materialize',
-      'jquery': 'npm:jquery'
+      'angular2-datatable': 'npm:angular2-datatable',
+      'jquery': 'npm:jquery',
+      'lodash': 'npm:lodash/lodash.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -47,6 +49,10 @@
       'angular2-materialize': {
         'main': 'dist/index',
         'defaultExtension': 'js',
+      },
+      'angular2-datatable': {
+        main: 'index.js',
+        defaultExtension: 'js'
       }
     }
   });

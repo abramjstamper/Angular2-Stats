@@ -12,16 +12,24 @@ import { TimerService } from '../shared/timer.service';
 export class RosterComponent {
 
     runTimer: boolean;
+    setClickedRow : Function;
+
+    team: Team;
+    playersInGame: number[] = [];
 
     constructor(private timerService: TimerService) {
         timerService.runTimer$.subscribe(
             runTimer => {
                 this.runTimer = runTimer;
             });
+        this.setClickedRow = function(player: Player, index:number){
+            if(this.playersInGame.hasOwnProperty(index)){
+                delete this.playersInGame[index];
+            } else {
+                this.playersInGame[index] = player;
+            }
+        }
     }
-
-    team: Team;
-    playersInGame: Player[];
 
     ngOnInit() {
         this.team = <Team>{
@@ -58,8 +66,8 @@ export class RosterComponent {
             },
             <Player>{
                 id: 1,
-                firstName: 'Sam',
-                lastName: 'Moore',
+                firstName: 'Abram',
+                lastName: 'Stamper',
                 homeNumber: 1,
                 awayNumber: 1,
                 isActive: true,
@@ -68,8 +76,8 @@ export class RosterComponent {
             },
             <Player>{
                 id: 2,
-                firstName: 'Sam',
-                lastName: 'Moore',
+                firstName: 'Lilly',
+                lastName: 'Burton',
                 homeNumber: 2,
                 awayNumber: 2,
                 isActive: true,
@@ -101,5 +109,10 @@ export class RosterComponent {
         for (let i of dbPlayers) {
             this.team.players.push(i);
         }
+    }  
+    
+    trackPlayer(index:number, item:Player) {
+        console.log(item);
+        return item ? item.id : undefined;
     }
 }
