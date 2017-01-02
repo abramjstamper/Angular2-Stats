@@ -92,6 +92,7 @@ export class TeamComponent {
     if(isValid){
       var toastContent = `<span><b>${model.name} saved successfully!</b></span>`;
       Materialize.toast(toastContent, 5000, 'green');
+      this.rosterService.editTeam(model);
     } else {
       var toastContent = `<span><b>Saving ${model.name} was unsuccessful!</b></span>`;
       Materialize.toast(toastContent, 5000, 'red');
