@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+declare var Materialize:any;
 
 import { Team } from '../shared/team';
 import { Player } from '../shared/player';
@@ -29,7 +30,7 @@ export class TeamComponent {
   constructor(
     private _fb: FormBuilder,
     private rosterService: RosterService
-  ) { } // form builder simplify form initialization
+  ) { }
 
   ngOnInit() {
 
@@ -53,12 +54,10 @@ export class TeamComponent {
         this.initPlayer(),
       ])
     });
-
-    // this.subcribeToFormChanges();
   }
 
   loadTeamIntoForm(team:Team){
-    for(let i in team.players){
+    for(let i in team.players.slice(0, team.players.length - 1)){
       this.addPlayer();
     }
     (<FormGroup>this.myForm)
@@ -66,7 +65,6 @@ export class TeamComponent {
   }
 
   initPlayer() {
-    // initialize our address
     return this._fb.group({
       id: [''],
       firstName: ['', Validators.required],
@@ -80,31 +78,27 @@ export class TeamComponent {
   }
 
   addPlayer() {
-    // add address to the list
     const control = <FormArray>this.myForm.controls['players'];
     control.push(this.initPlayer());
   }
 
   removePlayer(i: number) {
-    // remove address from the list
     const control = <FormArray>this.myForm.controls['players'];
     control.removeAt(i);
   }
 
   save(model: Team, isValid: boolean) {
-    this.submitted = true; // set form submit to true
+    this.submitted = true;
+    if(isValid){
+      var toastContent = `<span><b>${model.name} saved successfully!</b></span>`;
+      Materialize.toast(toastContent, 5000, 'green');
+    } else {
+      var toastContent = `<span><b>Saving ${model.name} was unsuccessful!</b></span>`;
+      Materialize.toast(toastContent, 5000, 'red');
+    }
 
     // check if model is valid
     // if valid, call API to save customer
     console.log(model, isValid);
-  }
-
-  subcribeToFormChanges() {
-    // initialize stream
-    const myFormValueChanges$ = this.myForm.valueChanges;
-
-    // subscribe to the stream 
-    myFormValueChanges$.subscribe(x => this.events
-      .push({ event: `STATUS CHANGED`, object: x }));
   }
 }
