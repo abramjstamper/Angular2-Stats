@@ -1,31 +1,92 @@
- <div class="container">
+<div class="container">
+  <div class="row">
+<h2>Team Editor</h2>
 
-<div class="row">
-  <table [mfData]="currentTeam.players" #mf="mfDataTable" [(mfSortBy)]="homeNumber">
-      <thead>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Home Num</th>
-        <th>Away Num</th>
-        <th>Active</th>
-        <th>Height</th>
-        <th>Weight</th>
-      </thead>
-      <tbody>
-      <tr *ngFor="let player of mf.data; let i = index">
-        <td>{{ player?.firstName }}</td>
-        <td>{{ player?.lastName }}</td>
-        <td>{{ player?.homeNumber }}</td>
-        <td>{{ player?.awayNumber }}</td>
-        <td>
-        <input type="checkbox" name="isActive"  [[checked]]="player?.isActive">
-      </td>
-        <td>{{ player?.isActive }}</td>
-        <td>{{ player?.heightInInches}}</td>
-        <td>{{ player?.weightInPounds }}</td>
-      </tr>
-      </tbody>
-    </table>
+    <a materialize="dropdown" class='orange dropdown-button waves-effect waves-light btn-large right' data-activates='dropdown1'>Team</a>
+    <ul id='dropdown1' class='dropdown-content'>
+      <li *ngFor="let team of teams" (click)="loadTeamIntoForm(team)">
+      <a class="orange-text">{{ team.name }}</a>
+      </li>
+    </ul>
+  </div>
 
+    <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm, myForm.valid)">
+      <div class="row card">
+        <div class="card-content">
+      <h2 class="card-title">{{"(" + myForm.controls.displayName.value + ")" + " " + myForm.controls.name.value}}</h2>
+      <div class="col s6">
+        <input type="text" formControlName="name">
+        <label for="name" data-error="Requires team name">Team Name</label>
+
+        <input type="text" formControlName="displayName">
+        <label for="displayName">Abbreviation</label>
+
+        <input type="text" formControlName="coachName">
+        <label for="coachName">Coach</label>
+
+        <input type="text" formControlName="assistantCoach1">
+        <label for="assistantCoach1">Assistant Coach 1</label>
+
+        <input type="text" formControlName="assistantCoach2">
+        <label for="assistantCoach2">Assistant Coach 2</label>
+
+        <br>
+        <label>Gender</label>
+        <div *ngFor="let gender of genders">
+          <p>
+          <input type="radio" name="gender" formControlName="gender" [value]="gender.value">
+          <label>{{gender.display}} </label>
+          </p>
+        </div>
+      </div>
+
+      <div class="col s6">
+        <input type="text" formControlName="textColor">
+        <label for="textColor" data-error="Requires text color">Text Color</label>
+
+        <input type="text" formControlName="bgColor">
+        <label for="bgColor" data-error="Requires background color">Background Color</label>
+
+        <input type="text" formControlName="hometown">
+        <label for="hometown">Hometown</label>
+
+        <input type="text" formControlName="mascot">
+        <label for="mascot">Mascot</label>
+
+        <input type="text" formControlName="trainer">
+        <label for="trainer">Trainer</label>
+
+        <input type="text" formControlName="athleticDirector">
+        <label for="athleticDirector">Athletic Director</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- list of players -->
+  <div class="row">
+  <div formArrayName="players">
+    <div *ngFor="let player of myForm.controls.players.controls; let i=index">
+      <!-- address header, show remove button when more than one address available -->
+      <div class="card">
+        <div class="card-content">
+        <span>Player {{i + 1}}</span>
+        <span *ngIf="myForm.controls.players.controls.length > 1" (click)="removePlayer(i)"> <i class="material-icons">delete</i></span>
+
+
+      <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
+      <div [formGroupName]="i">
+        <!--replace address implementation with our new address component-->
+        <player [group]="myForm.controls.players.controls[i]"></player>
+              </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <a (click)="addPlayer()" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
 </div>
+<button class="btn" type="submit" [disabled]="!myForm.valid">Submit</button>
+</div>
+</form>
 </div>

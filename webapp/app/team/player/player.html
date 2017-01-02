@@ -1,0 +1,20 @@
+<div [formGroup]="playerForm">
+  <div class="col s6">
+    <input type="text" type="email" class="validate" formControlName="firstName">
+    <label for="firstName" data-error="Requires first name">First Name</label>
+
+    <input type="text" class="form-control" formControlName="homeNumber">
+    <label for="homeNumber" data-error="Requires home number">Home Num</label>
+  </div>
+  <div class="col s6">
+    <input type="text" class="form-control" formControlName="lastName">
+    <label for="lastName" data-error="Requires last name">Last Name</label>
+
+    <input type="text" class="form-control" formControlName="awayNumber">
+    <label for="awayNumber" data-error="Requires away number">Away Num</label>
+  </div>
+   <div>
+    <input type="checkbox" class="form-control" formControlName="isActive">
+    <label for="isActive">Active</label>
+  </div>
+</div>

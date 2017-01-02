@@ -60,7 +60,7 @@ export class RosterService {
             }
         ];
 
-  private team = <Team>{
+  private team:Team = {
             id: 0,
             name: 'Kokomo High School',
             hometown: 'Kokomo, IN',
@@ -83,6 +83,12 @@ export class RosterService {
   
   getTeam(){
     return this.team;
+  }
+
+  loadAllTeams(){
+      let t = [];
+      t.push(this.team);
+      return t;
   }
 
   addPlayer(newPlayer:Player){
