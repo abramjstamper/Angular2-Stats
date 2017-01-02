@@ -1,29 +1,33 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
 
 import { MaterializeDirective } from "angular2-materialize";
 import { DataTableModule } from "angular2-datatable";
-import { DataFilterPipe }   from './shared/data-filter.pipe';
+import { DataFilterPipe } from './shared/data-filter.pipe';
+import { AppRoutingModule } from './app-routing.module';
 
 import { TimerComponent } from './timer/timer';
+import { TeamComponent } from './team/team.component';
 import { RosterComponent } from './roster/roster';
 import { GameModuleComponent } from './gameModule/gameModule.component';
 
-import { AppComponent }  from './app.component';
-
 @NgModule({
-  imports:      [ 
+  imports: [
     BrowserModule,
-    DataTableModule
-    ],
+    DataTableModule,
+    AppRoutingModule
+  ],
   declarations: [
     AppComponent,
     MaterializeDirective,
     DataFilterPipe,
     GameModuleComponent,
     TimerComponent,
-    RosterComponent
-    ],
-  bootstrap:    [ AppComponent ]
+    RosterComponent,
+    TeamComponent
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

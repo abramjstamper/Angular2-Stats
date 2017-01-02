@@ -85,5 +85,12 @@ export class RosterService {
     return this.team;
   }
 
+  addPlayer(newPlayer:Player){
+    this.team.players.push(newPlayer);
+  }
+
+  editTeam(modifiedTeam:Team){
+    this.team = modifiedTeam;
+  }
 
 }
