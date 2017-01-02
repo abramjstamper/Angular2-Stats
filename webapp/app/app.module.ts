@@ -7,6 +7,7 @@ import { DataFilterPipe }   from './shared/data-filter.pipe';
 
 import { TimerComponent } from './timer/timer';
 import { RosterComponent } from './roster/roster';
+import { GameModuleComponent } from './gameModule/gameModule.component';
 
 import { AppComponent }  from './app.component';
 
@@ -19,6 +20,7 @@ import { AppComponent }  from './app.component';
     AppComponent,
     MaterializeDirective,
     DataFilterPipe,
+    GameModuleComponent,
     TimerComponent,
     RosterComponent
     ],
