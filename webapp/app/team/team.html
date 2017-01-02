@@ -1,2 +1,31 @@
+ <div class="container">
+
 <div class="row">
+  <table [mfData]="currentTeam.players" #mf="mfDataTable" [(mfSortBy)]="homeNumber">
+      <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Home Num</th>
+        <th>Away Num</th>
+        <th>Active</th>
+        <th>Height</th>
+        <th>Weight</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let player of mf.data; let i = index">
+        <td>{{ player?.firstName }}</td>
+        <td>{{ player?.lastName }}</td>
+        <td>{{ player?.homeNumber }}</td>
+        <td>{{ player?.awayNumber }}</td>
+        <td>
+        <input type="checkbox" name="isActive"  [[checked]]="player?.isActive">
+      </td>
+        <td>{{ player?.isActive }}</td>
+        <td>{{ player?.heightInInches}}</td>
+        <td>{{ player?.weightInPounds }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+</div>
 </div>
