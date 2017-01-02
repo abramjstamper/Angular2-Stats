@@ -67,7 +67,7 @@ export class RosterService {
             coachName: 'Matt Moore',
             mascot: 'Wildkats',
             displayName: 'Kokomo',
-            gender: 'm',
+            gender: 'M',
             textColor: 'red-text',
             bgColor: 'blue darken-4',
             assistantCoach1: 'Assistant',

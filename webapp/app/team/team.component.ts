@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 import { Team } from '../shared/team';
+import { Player } from '../shared/player';
 import { PlayerComponent } from './player/player';
 import { RosterService } from '../roster/roster.service';
 
@@ -57,15 +58,17 @@ export class TeamComponent {
   }
 
   loadTeamIntoForm(team:Team){
-    console.log("I made it here");
-    console.log(team);
+    for(let i in team.players){
+      this.addPlayer();
+    }
     (<FormGroup>this.myForm)
-            .setValue(team, { onlySelf: true });
+            .patchValue(team, {});
   }
 
   initPlayer() {
     // initialize our address
     return this._fb.group({
+      id: [''],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       homeNumber: ['', Validators.required],

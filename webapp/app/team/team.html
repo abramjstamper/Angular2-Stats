@@ -10,7 +10,7 @@
     </ul>
   </div>
 
-    <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm, myForm.valid)">
+    <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value, myForm.valid)">
       <div class="row card">
         <div class="card-content">
       <h2 class="card-title">{{"(" + myForm.controls.displayName.value + ")" + " " + myForm.controls.name.value}}</h2>
@@ -70,14 +70,13 @@
       <div class="card">
         <div class="card-content">
         <span>Player {{i + 1}}</span>
-        <span *ngIf="myForm.controls.players.controls.length > 1" (click)="removePlayer(i)"> <i class="material-icons">delete</i></span>
-
+        <span *ngIf="myForm.controls.players.controls.length > 5" (click)="removePlayer(i)"> <i class="material-icons">delete</i></span>
 
       <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
       <div [formGroupName]="i">
         <!--replace address implementation with our new address component-->
-        <player [group]="myForm.controls.players.controls[i]"></player>
-              </div>
+        <player [group]="myForm.controls.players.controls[i]" ></player>
+      </div>
       </div>
       </div>
     </div>
