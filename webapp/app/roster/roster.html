@@ -7,21 +7,6 @@
           <span class="secondary-content">{{ player?.homeNumber }}</span></div>
         </li>
       </ul>
-
-    <!--<table>
-      <thead>
-        <tr>
-          <th data-field="name">Name</th>
-          <th data-field="homeNumber">Number</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let player of playersInGame; let i = index">
-          <td [ngClass]="team.textColor">{{ player?.firstName[0] + " " + player?.lastName }}</td>
-          <td><a class="btn waves-effect waves-light blue-grey lighten-4" [ngClass]="team.textColor">{{ player?.homeNumber }}</a></td>
-        </tr>
-      </tbody>
-    </table>-->
   </div>
 
   <div class="card-panel" *ngIf="!runTimer">
