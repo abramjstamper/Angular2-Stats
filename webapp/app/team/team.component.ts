@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 declare var Materialize:any;
 
-import { Team } from '../shared/team';
-import { Player } from '../shared/player';
+import { Team } from '../shared/interface/team';
+import { Player } from '../shared/interface/player';
 import { PlayerComponent } from './player/player';
-import { RosterService } from '../roster/roster.service';
+import { TeamService } from '../shared/service/team.service';
 
 @Component({
   moduleId: module.id,
   selector: 'team',
   templateUrl: 'team.html',
   providers: [
-    RosterService
+    TeamService
   ]
 })
 export class TeamComponent {
@@ -29,12 +29,12 @@ export class TeamComponent {
 
   constructor(
     private _fb: FormBuilder,
-    private rosterService: RosterService
+    private teamService: TeamService
   ) { }
 
   ngOnInit() {
 
-    this.teams = this.rosterService.loadAllTeams();
+    this.teams = this.teamService.loadAllTeams();
 
     this.myForm = this._fb.group({
       id: [''],
@@ -92,7 +92,7 @@ export class TeamComponent {
     if(isValid){
       var toastContent = `<span><b>${model.name} saved successfully!</b></span>`;
       Materialize.toast(toastContent, 5000, 'green');
-      this.rosterService.editTeam(model);
+      this.teamService.editTeam(model.id, model);
     } else {
       var toastContent = `<span><b>Saving ${model.name} was unsuccessful!</b></span>`;
       Materialize.toast(toastContent, 5000, 'red');

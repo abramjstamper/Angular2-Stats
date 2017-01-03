@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { Team } from '../shared/Team';
-import { Player } from '../shared/Player';
+import { Team } from '../shared/interface/team';
+import { Player } from '../shared/interface/player';
 
-import { TimerService } from '../shared/timer.service';
-import { RosterService } from './roster.service';
+import { TimerService } from '../shared/service/timer.service';
+import { TeamService } from '../shared/service/team.service';
 
 @Component({
     selector: 'roster',
@@ -20,7 +20,7 @@ export class RosterComponent {
 
     constructor(
         private timerService: TimerService,
-        private rosterService: RosterService
+        private teamService: TeamService
     ) {
         timerService.runTimer$.subscribe(
             runTimer => {
@@ -36,7 +36,7 @@ export class RosterComponent {
     }
 
     ngOnInit() {
-        this.team = this.rosterService.getTeam();
+        this.team = this.teamService.getTeam(0);
     }
     
     trackPlayer(index:number, item:Player) {

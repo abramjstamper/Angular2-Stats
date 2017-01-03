@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Player } from '../../shared/player';
+import { Player } from '../../shared/interface/player';
 
 @Component({
   moduleId: module.id,

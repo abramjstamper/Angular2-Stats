@@ -5,7 +5,7 @@
 */
 
 import { Component, Input } from '@angular/core';
-import { TimerService } from '../shared/timer.service';
+import { TimerService } from '../shared/service/timer.service';
 
 @Component({
     selector: 'timer',

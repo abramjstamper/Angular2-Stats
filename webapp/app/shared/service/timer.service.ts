@@ -7,7 +7,7 @@
 
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
-import { ITimer } from '../shared/ittimer';
+import { ITimer } from '../interface/ittimer';
 
 @Injectable()
 export class TimerService {

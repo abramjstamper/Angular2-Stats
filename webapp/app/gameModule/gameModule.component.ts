@@ -3,8 +3,8 @@ import { Component, ViewChild } from '@angular/core';
 import { TimerComponent } from '../timer/timer';
 import { RosterComponent } from '../roster/roster';
 
-import { TimerService } from '../shared/timer.service';
-import { RosterService } from '../roster/roster.service';
+import { TimerService } from '../shared/service/timer.service';
+import { TeamService } from '../shared/service/team.service';
 
 @Component({
   moduleId: module.id,
@@ -12,7 +12,7 @@ import { RosterService } from '../roster/roster.service';
   templateUrl: 'gameModule.html',
   providers: [
     TimerService,
-    RosterService
+    TeamService
   ]
 })
 export class GameModuleComponent {
