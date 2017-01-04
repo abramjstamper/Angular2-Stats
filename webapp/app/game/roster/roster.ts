@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { Team } from '../shared/interface/team';
-import { Player } from '../shared/interface/player';
+import { Team } from '../../shared/interface/team';
+import { Player } from '../../shared/interface/player';
 
-import { TimerService } from '../shared/service/timer.service';
-import { TeamService } from '../shared/service/team.service';
+import { TimerService } from '../../shared/service/timer.service';
+import { TeamService } from '../../shared/service/team.service';
 
 @Component({
     selector: 'roster',
     //from root web server directory, not roster's component directory
-    templateUrl: './app/roster/roster.html'
+    templateUrl: './app/game/roster/roster.html'
 })
 export class RosterComponent {
 

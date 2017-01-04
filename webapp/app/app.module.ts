@@ -10,9 +10,9 @@ import { DataFilterPipe } from './shared/data-filter.pipe';
 import { AppRoutingModule } from './app-routing.module';
 
 import { PlayerComponent } from './team/player/player';
-import { TimerComponent } from './timer/timer';
+import { TimerComponent } from './game/timer/timer';
 import { TeamComponent } from './team/team.component';
-import { RosterComponent } from './roster/roster';
+import { RosterComponent } from './game/roster/roster';
 import { GameComponent } from './game/game.component';
 import { EventComponent } from './game/event/event.component';
 

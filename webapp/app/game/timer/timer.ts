@@ -5,12 +5,12 @@
 */
 
 import { Component, Input } from '@angular/core';
-import { TimerService } from '../shared/service/timer.service';
+import { TimerService } from '../../shared/service/timer.service';
 
 @Component({
     selector: 'timer',
     //from root web server directory, not timer's component directory
-    templateUrl: './app/timer/timer.html'
+    templateUrl: './app/game/timer/timer.html'
 })
 export class TimerComponent {
 
