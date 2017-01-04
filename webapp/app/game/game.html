@@ -49,5 +49,51 @@
   <div class="divider"></div>
 </div>
 
+<!-- Action Buttons -->
+<div class="row">
+  <div class="col s1"></div>
+
+  <div class="col s10 center">
+    <a class="waves-effect waves-light btn-large" (click)="createEvent('goalTending')">Goal Tend</a>
+    <a class="waves-effect waves-light btn-large" (click)="createEvent('fieldgoalMade')">Made</a>
+    <a class="waves-effect waves-light btn-large" (click)="createEvent('putbackMade')">Putback</a>
+    <!-- Free throw Dropdown -->
+    <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='dropdown2'>Freethrow</a>
+    <!-- Free throw Dropdown Options -->
+    <ul id='dropdown2' class='dropdown-content'>
+      <li><a (click)="createEvent('freethrowMissed')">Missed</a></li>
+      <li><a (click)="createEvent('freethrowMade')">Made</a></li>
+      <li><a (click)="createEvent('violation')">Violation</a></li>
+    </ul>
+    <a class="waves-effect waves-light btn-large" (click)="createEvent('deadballRebound')">Deadball</a>
+  </div>
+
+  <div class="col s1"></div>
+
+</div>
+
+<div class="row">
+
+  <div class="col s1"></div>
+
+  <div class="col s10 center">
+    <!-- Foul Dropdown -->
+    <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='dropdown1'>Foul</a>
+    <!-- Foul Dropdown Options -->
+    <ul id='dropdown1' class='dropdown-content'>
+      <li><a (click)="createEvent('foul')">Normal</a></li>
+      <li><a (click)="createEvent('offensiveFoul')">Offensive</a></li>
+      <li><a (click)="createEvent('technicalFoul')">Technical</a></li>
+    </ul>
+    <a class="waves-effect waves-light btn-large" (click)="createEvent('jumpball')">Jump Ball</a>
+    <a class="waves-effect waves-light btn-large" (click)="createEvent('turnover')">Turnover</a>
+    <a class="waves-effect waves-light btn-large" (click)="createEvent('steal')">Steal</a>
+    <a class="waves-effect waves-light btn-large" (click)="createEvent('assistAttempt')">Assist Atmpt</a>
+  </div>
+
+  <div class="col s1"></div>
+
+</div>
+
 <!-- Event Module -->
 <event [gameID]="game?.id"></event>
