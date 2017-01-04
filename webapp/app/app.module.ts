@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { MaterializeDirective } from "angular2-materialize";
 import { DataTableModule } from "angular2-datatable";
 import { DataFilterPipe } from './shared/data-filter.pipe';
+import { SecondsAsDigitalClockPipe } from './shared/print-time.pipe';
 import { AppRoutingModule } from './app-routing.module';
 
 import { PlayerComponent } from './team/player/player';
@@ -27,6 +28,7 @@ import { EventComponent } from './game/event/event.component';
     AppComponent,
     MaterializeDirective,
     DataFilterPipe,
+    SecondsAsDigitalClockPipe,
     GameComponent,
     TimerComponent,
     RosterComponent,
