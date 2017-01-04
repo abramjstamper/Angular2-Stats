@@ -13,8 +13,8 @@ import { PlayerComponent } from './team/player/player';
 import { TimerComponent } from './timer/timer';
 import { TeamComponent } from './team/team.component';
 import { RosterComponent } from './roster/roster';
-import { GameModuleComponent } from './gameModule/gameModule.component';
-import { EventComponent } from './gameModule/event/event.component';
+import { GameComponent } from './game/game.component';
+import { EventComponent } from './game/event/event.component';
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import { EventComponent } from './gameModule/event/event.component';
     AppComponent,
     MaterializeDirective,
     DataFilterPipe,
-    GameModuleComponent,
+    GameComponent,
     TimerComponent,
     RosterComponent,
     TeamComponent,

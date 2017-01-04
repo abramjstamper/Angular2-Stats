@@ -8,14 +8,14 @@ import { TeamService } from '../shared/service/team.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'gameModule',
-  templateUrl: 'gameModule.html',
+  selector: 'game',
+  templateUrl: 'game.html',
   providers: [
     TimerService,
     TeamService
   ]
 })
-export class GameModuleComponent {
+export class GameComponent {
 
 @ViewChild(TimerComponent) timer: TimerComponent;
 @ViewChild(RosterComponent) roster: RosterComponent;
