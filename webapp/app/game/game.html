@@ -6,20 +6,20 @@
   <div class="col s2">
     <div class="card-panel">
       <div class="center">
-        <div class="card-title">{{homeTeamName}}</div>
+        <div class="card-title">{{ game?.homeTeam.name }}</div>
         <span class="scoreboard_score">{{ homeScore }}</span>
       </div>
     </div>
   </div>
 
-  <timer [timeInSeconds]="secondsPerQuarter"></timer>
+  <timer [timeInSeconds]="game?.rules.periodLengthInSeconds"></timer>
 
   <!-- visiting team scoreboard -->
   <div class="col s2">
     <div class="card-panel">
       <div class="center">
-        <div class="card-title">{{visitorTeamName}}</div>
-        <span class="scoreboard_score">{{ visitorScore }}</span>
+        <div class="card-title">{{ game?.awayTeam.name }}</div>
+        <span class="scoreboard_score">{{ awayScore }}</span>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
 
   <div class="row">
     <!-- Home Team -->
-    <roster></roster>
+    <roster [team]="game?.homeTeam"></roster>
 
     <!-- Court -->
     <div class="col s6">
@@ -42,7 +42,7 @@
 </div>
 
 <!-- Visiting Team -->
-<roster></roster>
+<roster [team]="game?.awayTeam"></roster>
 </div>
 
 <div class="row">

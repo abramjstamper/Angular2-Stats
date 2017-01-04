@@ -12,10 +12,11 @@ import { TeamService } from '../../shared/service/team.service';
 })
 export class RosterComponent {
 
+    @Input() team: Team;
+
     runTimer: boolean;
     setClickedRow : Function;
 
-    team: Team;
     playersInGame: number[] = [];
 
     constructor(
@@ -36,7 +37,6 @@ export class RosterComponent {
     }
 
     ngOnInit() {
-        this.team = this.teamService.getTeam(0);
     }
     
     trackPlayer(index:number, item:Player) {

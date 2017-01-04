@@ -3,8 +3,11 @@ import { Component, ViewChild } from '@angular/core';
 import { TimerComponent } from './timer/timer';
 import { RosterComponent } from './roster/roster';
 
-import { TimerService } from '../shared/service/timer.service';
+import { GameService } from '../shared/service/game.service';
 import { TeamService } from '../shared/service/team.service';
+import { TimerService } from '../shared/service/timer.service';
+
+import { Game } from '../shared/interface/game';
 
 @Component({
   moduleId: module.id,
@@ -12,7 +15,8 @@ import { TeamService } from '../shared/service/team.service';
   templateUrl: 'game.html',
   providers: [
     TimerService,
-    TeamService
+    TeamService,
+    GameService
   ]
 })
 export class GameComponent {
@@ -20,12 +24,19 @@ export class GameComponent {
 @ViewChild(TimerComponent) timer: TimerComponent;
 @ViewChild(RosterComponent) roster: RosterComponent;
 
-  title = "Stats";
+  game:Game;
+  homeScore:number = 0;
+  awayScore:number = 0;
 
-  homeScore = 0;
-  visitorScore = 0;
-  visitorTeamName = "Western";
-  homeTeamName = "Kokomo";
+    constructor(
+        private timerService: TimerService,
+        private teamService: TeamService,
+        private gameService: GameService
+    ) {
 
-  secondsPerQuarter = 480;
+    }
+
+  ngOnInit(){
+    this.game = this.gameService.getGame(0);
+  }
 }
