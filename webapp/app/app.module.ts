@@ -14,6 +14,7 @@ import { TimerComponent } from './timer/timer';
 import { TeamComponent } from './team/team.component';
 import { RosterComponent } from './roster/roster';
 import { GameModuleComponent } from './gameModule/gameModule.component';
+import { EventComponent } from './gameModule/event/event.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { GameModuleComponent } from './gameModule/gameModule.component';
     TimerComponent,
     RosterComponent,
     TeamComponent,
-    PlayerComponent
+    PlayerComponent,
+    EventComponent
   ],
   bootstrap: [AppComponent]
 })
