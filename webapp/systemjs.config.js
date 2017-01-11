@@ -30,7 +30,8 @@
       'angular2-materialize': 'npm:angular2-materialize',
       'angular2-datatable': 'npm:angular2-datatable',
       'jquery': 'npm:jquery',
-      'lodash': 'npm:lodash/lodash.js'
+      'lodash': 'npm:lodash/lodash.js',
+      '@ngrx': 'npm:@ngrx'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -53,7 +54,15 @@
       'angular2-datatable': {
         main: 'index.js',
         defaultExtension: 'js'
-      }
+      },
+      '@ngrx/core': {
+            main: 'index.js',
+            format: 'cjs'
+        },
+        '@ngrx/store': {
+            main: 'index.js',
+            format: 'cjs'
+        }
     }
   });
 })(this);
