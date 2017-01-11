@@ -10,10 +10,9 @@ import { EVENT_OPTIONS } from '../mockData/mock-event-options';
 @Injectable()
 export class EventService {
 
-  observable:any;
+  observable:any = Observable.create((observer: any) => {});
 
   constructor() {
-    this.observable = Observable.create((observer: any) => {});
   }
 
   createGameEvent(gameID: number, newEvent: Event) {
