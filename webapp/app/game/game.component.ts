@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { TimerComponent } from './timer/timer';
 import { RosterComponent } from './roster/roster';
@@ -24,45 +25,62 @@ import { Event } from '../shared/interface/event';
 })
 export class GameComponent {
 
-@ViewChild(TimerComponent) timer: TimerComponent;
-@ViewChild(RosterComponent) roster: RosterComponent;
+  @ViewChild(TimerComponent) timer: TimerComponent;
+  //@ViewChild(RosterComponent) roster: RosterComponent;
 
-  game:Game;
-  homeScore:number = 0;
-  awayScore:number = 0;
+  game: Game;
+  homeScore: number = 0;
+  awayScore: number = 0;
 
-  previousGameEvents:Event[] = [];
-  currentSortID:number = 1;
-  eventOptionsSymbolTable:{} = {}
+  previousGameEvents: Event[] = [];
+  currentSortID: number = 1;
+  eventOptionsSymbolTable: {} = {}
 
-    constructor(
-        private timerService: TimerService,
-        private teamService: TeamService,
-        private gameService: GameService,
-        private eventService: EventService,
-    ) {}
+  constructor(
+    private timerService: TimerService,
+    private teamService: TeamService,
+    private gameService: GameService,
+    private eventService: EventService,
+  ) {
+ 
+this.eventService.observable.subscribe(
+  (data:any) => {
+    console.log('data received');
+  },
+  (error:any) => {
+  },
+  () => {
+    console.log('completed');
+  });
 
-  ngOnInit(){
+
+  }
+
+  ngOnInit() {
     this.game = this.gameService.getGame(0);
     this.eventOptionsSymbolTable = this.eventService.getGameEventOptions();
   }
 
-  createEvent(event:string){
+playerClicked(playerID:number){
+  console.log(playerID);
+}
 
-    //get player event emitter
+createEvent(event:string){
 
-    //create new event & assign params
-    let newEvent:Event = new Event(this.timerService.getTimer().secondsRemaining, 
+  //get player event emitter
+
+  //create new event & assign params
+  let newEvent: Event = new Event(this.timerService.getTimer().secondsRemaining,
     this.timerService.getPeriod(), null, // player ID 
     this.eventOptionsSymbolTable[event], this.game.id, this.currentSortID);
 
-    this.currentSortID++;
-    this.eventService.createGameEvent(this.game.id, newEvent);
-  }
+  this.currentSortID++;
+  this.eventService.createGameEvent(this.game.id, newEvent);
+}
 
-  undo(){
-    if(this.previousGameEvents.length > 0){
-      this.previousGameEvents.pop();
-    }
+undo(){
+  if (this.previousGameEvents.length > 0) {
+    this.previousGameEvents.pop();
   }
+}
 }

@@ -1,9 +1,11 @@
-import { Component, Input } from '@angular/core';
-import { Team } from '../../shared/interface/team';
-import { Player } from '../../shared/interface/player';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { TimerService } from '../../shared/service/timer.service';
+import { Player } from '../../shared/interface/player';
+import { Team } from '../../shared/interface/team';
+
+import { EventService } from '../../shared/service/event.service';
 import { TeamService } from '../../shared/service/team.service';
+import { TimerService } from '../../shared/service/timer.service';
 
 @Component({
     selector: 'roster',
@@ -13,13 +15,16 @@ import { TeamService } from '../../shared/service/team.service';
 export class RosterComponent {
 
     @Input() team: Team;
+    @Output() playerIDClicked = new EventEmitter();
 
     runTimer: boolean;
     setClickedRow : Function;
 
     playersInGame: number[] = [];
+    observable = this.eventService.observable;
 
     constructor(
+        private eventService: EventService,
         private timerService: TimerService,
         private teamService: TeamService
     ) {
@@ -39,8 +44,7 @@ export class RosterComponent {
     ngOnInit() {
     }
     
-    trackPlayer(index:number, item:Player) {
-        console.log(item);
-        return item ? item.id : undefined;
+    playerClicked(playerID:number){
+        this.playerIDClicked.emit(playerID);
     }
 }

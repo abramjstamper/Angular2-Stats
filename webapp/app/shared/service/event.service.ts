@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject }    from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 import { Game } from '../interface/game';
 import { Event } from '../interface/event';
@@ -10,20 +10,26 @@ import { EVENT_OPTIONS } from '../mockData/mock-event-options';
 @Injectable()
 export class EventService {
 
-  createGameEvent(gameID:number, newEvent:Event){
+  observable:any;
+
+  constructor() {
+    this.observable = Observable.create((observer: any) => {});
+  }
+
+  createGameEvent(gameID: number, newEvent: Event) {
     GAMES[gameID].events.push(newEvent);
 
     console.log(newEvent);
   }
-  
-  deleteGameEvent(gameID:number, event:Event){
-    let idx:number = GAMES[gameID].events.indexOf(event);
+
+  deleteGameEvent(gameID: number, event: Event) {
+    let idx: number = GAMES[gameID].events.indexOf(event);
     if (idx > -1) {
-     GAMES[gameID].events.splice(idx, 1);
+      GAMES[gameID].events.splice(idx, 1);
     }
   }
 
-  getGameEventOptions(){
+  getGameEventOptions() {
     return EVENT_OPTIONS;
   }
 }
