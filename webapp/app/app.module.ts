@@ -10,6 +10,9 @@ import { DataFilterPipe } from './shared/data-filter.pipe';
 import { SecondsAsDigitalClockPipe } from './shared/print-time.pipe';
 import { AppRoutingModule } from './app-routing.module';
 
+import { StoreModule } from '@ngrx/store';
+import { events } from './shared/reducer/event';
+
 import { PlayerComponent } from './team/player/player';
 import { TimerComponent } from './game/timer/timer';
 import { TeamComponent } from './team/team.component';
@@ -35,6 +38,9 @@ import { EventComponent } from './game/event/event.component';
     TeamComponent,
     PlayerComponent,
     EventComponent
+  ],
+  providers: [
+    { provide: 'EventsStore', useValue: events }
   ],
   bootstrap: [AppComponent]
 })

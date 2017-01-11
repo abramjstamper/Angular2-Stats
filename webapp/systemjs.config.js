@@ -56,13 +56,13 @@
         defaultExtension: 'js'
       },
       '@ngrx/core': {
-            main: 'index.js',
-            format: 'cjs'
-        },
-        '@ngrx/store': {
-            main: 'index.js',
-            format: 'cjs'
-        }
+        main: 'index.js',
+        format: 'cjs'
+      },
+      '@ngrx/store': {
+        main: 'index.js',
+        format: 'cjs'
+      }
     }
   });
 })(this);
