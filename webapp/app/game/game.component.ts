@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { TimerComponent } from './timer/timer';
 import { RosterComponent } from './roster/roster';
@@ -26,34 +27,22 @@ import { Event } from '../shared/interface/event';
 export class GameComponent {
 
   @ViewChild(TimerComponent) timer: TimerComponent;
-  //@ViewChild(RosterComponent) roster: RosterComponent;
 
   game: Game;
   homeScore: number = 0;
   awayScore: number = 0;
+  status: string = "Load Rosters and Select Starting Lineup";
 
-  previousGameEvents: Event[] = [];
   currentSortID: number = 1;
-  eventOptionsSymbolTable: {} = {}
+  eventOptionsSymbolTable: String[] = []
+  subscription: Subscription;
 
   constructor(
-    private timerService: TimerService,
-    private teamService: TeamService,
-    private gameService: GameService,
     private eventService: EventService,
+    private gameService: GameService,
+    private teamService: TeamService,
+    private timerService: TimerService
   ) {
- 
-this.eventService.observable.subscribe(
-  (data:any) => {
-    console.log('data received');
-  },
-  (error:any) => {
-  },
-  () => {
-    console.log('completed');
-  });
-
-
   }
 
   ngOnInit() {
@@ -61,26 +50,46 @@ this.eventService.observable.subscribe(
     this.eventOptionsSymbolTable = this.eventService.getGameEventOptions();
   }
 
-playerClicked(playerID:number){
-  console.log(playerID);
-}
+  createEvent(event: string) {
 
-createEvent(event:string){
+    //checks to see if a player needs to be selected before creating a new subscription
+    if (!this.subscription) {
+      //get player event emitter as a subscription
+      this.subscription = this.createEventSubscription(event);
+    } else {
+      this.status = "Select an event";
+      this.subscription.unsubscribe();
+      this.subscription = this.createEventSubscription(event);
+    }
 
-  //get player event emitter
-
-  //create new event & assign params
-  let newEvent: Event = new Event(this.timerService.getTimer().secondsRemaining,
-    this.timerService.getPeriod(), null, // player ID 
-    this.eventOptionsSymbolTable[event], this.game.id, this.currentSortID);
-
-  this.currentSortID++;
-  this.eventService.createGameEvent(this.game.id, newEvent);
-}
-
-undo(){
-  if (this.previousGameEvents.length > 0) {
-    this.previousGameEvents.pop();
   }
-}
+
+  private createEventSubscription(event: string) {
+
+    if (this.timerService.getTimer().runTimer)
+      this.status = "Select a player";
+    else
+      this.status = "Start the clock";
+
+    return this.eventService.player$.subscribe(
+      player => {
+        //create new event object & assign params
+        let newEvent: Event = new Event(this.timerService.getTimer().secondsRemaining,
+          this.timerService.getPeriod(), player.id, // player ID 
+          this.eventOptionsSymbolTable.findIndex(str => str == event), this.game.id, this.currentSortID);
+        this.currentSortID++;
+
+        this.eventService.createGameEvent(this.game.id, newEvent);
+        this.subscription.unsubscribe();
+        this.subscription = undefined;
+        this.status = "Select an event";
+      });
+  }
+
+  undo(){
+    console.log(this.game.events);
+    if (this.game.events.length > 0) {
+      this.game.events.pop();
+    }
+  }
 }

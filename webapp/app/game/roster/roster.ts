@@ -21,7 +21,6 @@ export class RosterComponent {
     setClickedRow : Function;
 
     playersInGame: number[] = [];
-    observable = this.eventService.observable;
 
     constructor(
         private eventService: EventService,
@@ -44,7 +43,7 @@ export class RosterComponent {
     ngOnInit() {
     }
     
-    playerClicked(playerID:number){
-        this.playerIDClicked.emit(playerID);
+    playerClicked(player:Player){
+        this.eventService.player.next(player);
     }
 }

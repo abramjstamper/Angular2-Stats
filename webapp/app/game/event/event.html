@@ -11,23 +11,21 @@
             <mfDefaultSorter by="player">Player</mfDefaultSorter>
           </th>
           <th>
+            <mfDefaultSorter [by]="eventID">Event</mfDefaultSorter>
+          </th>
+          <th>
             <mfDefaultSorter [by]="periodEventOccured">Period</mfDefaultSorter>
           </th>
           <th>
             <mfDefaultSorter by="timeEventOccuredInSeconds">Time</mfDefaultSorter>
-          </th>
-          <th></th>
-        </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of mf.data;">
           <td>{{ item.gameSortID }}</td>
-          <td>{{ item.player }}</td>
+          <td>{{ item.player?.firstName + " " + item.player?.lastName }}</td>
+          <td>{{ item.eventID | printEventType | capitalize }}</td>
           <td>{{ item.periodEventOccured }}</td>
           <td>{{ item.timeEventOccuredInSeconds | secondsAsDigitalClock }}</td>
-          <td>
-            <a class="btn red">x</a>
-          </td>
         </tr>
       </tbody>
       <tfoot>

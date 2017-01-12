@@ -4,7 +4,7 @@
         <li class="collection-header"><h4>{{ team.displayName }}</h4></li>
         <li class="collection-item" *ngFor="let player of playersInGame; let i = index">
           <div>{{ player?.firstName[0] + " " + player?.lastName }}
-          <a (click)="playerClicked(player?.id)" class="secondary-content">{{ player?.homeNumber }}</a></div>
+          <a (click)="playerClicked(playersInGame[i])" class="secondary-content">{{ player?.homeNumber }}</a></div>
         </li>
       </ul>
   </div>

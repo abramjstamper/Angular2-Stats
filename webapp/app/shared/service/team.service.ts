@@ -20,6 +20,10 @@ export class TeamService {
       return TEAMS;
   }
 
+  getPlayer(playerID:number):Player {
+    return TEAMS[0].players.concat(TEAMS[1].players).find(player => player.id == playerID);
+  }
+
   addPlayer(teamID:number, newPlayer:Player){
     TEAMS[teamID].players.push(newPlayer);
   }
