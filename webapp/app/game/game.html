@@ -33,99 +33,93 @@
     <roster [team]="game?.homeTeam"></roster>
 
     <!-- Court -->
-    <div class="col s6">
-      <div class="card-panel center">
-        <canvas id="myCanvas" width="504" height="300" style="border: 1px solid black;">Your browser does not support the HTML 5 Canvas.
-</canvas>
+    <court></court>
 
-</div>
-</div>
+    <!-- Visiting Team -->
+    <roster [team]="game?.awayTeam"></roster>
+  </div>
 
-<!-- Visiting Team -->
-<roster [team]="game?.awayTeam"></roster>
-</div>
+  <div class="row">
+    <div class="divider"></div>
+  </div>
 
-<div class="row">
-  <div class="divider"></div>
-</div>
-
-<!-- Status Message Center -->
-<div class="row">
-  <div class="card">
-    <div class="card-content">
-      <h4 class="center-align">{{ status }}</h4>
+  <!-- Status Message Center -->
+  <div class="row">
+    <div class="card">
+      <div class="card-content">
+        <h4 class="center-align">{{ status }}</h4>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Action Buttons -->
-<div class="row">
-  <div class="col s1"></div>
+  <!-- Action Buttons -->
+  <div class="row">
+    <div class="col s1"></div>
 
-  <div class="col s10 center">
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('goal tending')">Goal Tend</a>
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('field goal missed')">Miss</a>
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('block')">Block</a>
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('field goal made')">Made</a>
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('putback made')">Putback</a>
-    <!-- Free throw Dropdown -->
-    <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='freethrowDropdown'>Freethrow</a>
-    <!-- Free throw Dropdown Options -->
-    <ul id='freethrowDropdown' class='dropdown-content'>
-      <li><a (click)="createEvent('freethrow made')">Made</a></li>
-      <li><a (click)="createEvent('freethrow missed')">Missed</a></li>
-      <li><a (click)="createEvent('freethrow violation')">Violation</a></li>
-    </ul>
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('deadball rebound')">Deadball</a>
+    <div class="col s10 center">
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('goal tending')">Goal Tend</a>
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('field goal missed')">Miss</a>
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('block')">Block</a>
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('field goal made')">Made</a>
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('putback made')">Putback</a>
+      <!-- Free throw Dropdown -->
+      <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='freethrowDropdown'>Freethrow</a>
+      <!-- Free throw Dropdown Options -->
+      <ul id='freethrowDropdown' class='dropdown-content'>
+        <li><a (click)="createEvent('freethrow made')">Made</a></li>
+        <li><a (click)="createEvent('freethrow missed')">Missed</a></li>
+        <li><a (click)="createEvent('freethrow violation')">Violation</a></li>
+      </ul>
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('deadball rebound')">Deadball</a>
+    </div>
+
+    <div class="col s1"></div>
+
   </div>
 
-  <div class="col s1"></div>
+  <div class="row">
 
-</div>
+    <div class="col s1"></div>
 
-<div class="row">
+    <div class="col s10 center">
+      <!-- Foul Dropdown -->
+      <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='foulDropdown'>Foul</a>
+      <!-- Foul Dropdown Options -->
+      <ul id='foulDropdown' class='dropdown-content'>
+        <li><a (click)="createEvent('foul')">Defensive</a></li>
+        <li><a (click)="createEvent('offensive foul')">Offensive</a></li>
+        <li><a (click)="createEvent('charge')">Charge</a></li>
+        <li><a (click)="createEvent('intentional foul')">Intentional</a></li>
+      </ul>
+      <!-- Foul Dropdown -->
+      <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='techFoulDropdown'>Tech Foul</a>
+      <!-- Foul Dropdown Options -->
+      <ul id='techFoulDropdown' class='dropdown-content'>
+        <li><a (click)="createEvent('technical foul')">Technical</a></li>
+        <li><a (click)="createEvent('intentional foul')">Intentional</a></li>
+        <li><a (click)="createEvent('ddministrative technical foul')">Administrative</a></li>
+        <li><a (click)="createEvent('coach technical foul')">Coach</a></li>
+      </ul>
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('jumpball')">Jump Ball</a>
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('turnover')">Turnover</a>
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('steal')">Steal</a>
+      <a class="waves-effect waves-light btn-large" (click)="createEvent('assistAttempt')">Assist Atmpt</a>
 
-  <div class="col s1"></div>
+      <!-- Timeout Dropdown -->
+      <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='timeoutDropdown'>Timeout</a>
+      <!-- Foul Dropdown Options -->
+      <ul id='timeoutDropdown' class='dropdown-content'>
+        <li><a (click)="createEvent('full timeout')">Full</a></li>
+        <li><a (click)="createEvent('half timeout')">Half</a></li>
+        <li><a (click)="createEvent('official timeout')">Official</a></li>
+        <li><a (click)="createEvent('media timeout')">Media</a></li>
+        <li><a (click)="createEvent('injury timeout')">Injury</a></li>
+      </ul>
+    </div>
 
-  <div class="col s10 center">
-    <!-- Foul Dropdown -->
-    <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='foulDropdown'>Foul</a>
-    <!-- Foul Dropdown Options -->
-    <ul id='foulDropdown' class='dropdown-content'>
-      <li><a (click)="createEvent('foul')">Defensive</a></li>
-      <li><a (click)="createEvent('offensive foul')">Offensive</a></li>
-      <li><a (click)="createEvent('charge')">Charge</a></li>
-      <li><a (click)="createEvent('intentional foul')">Intentional</a></li>
-    </ul>
-    <!-- Foul Dropdown -->
-    <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='techFoulDropdown'>Tech Foul</a>
-    <!-- Foul Dropdown Options -->
-    <ul id='techFoulDropdown' class='dropdown-content'>
-      <li><a (click)="createEvent('technical foul')">Technical</a></li>
-      <li><a (click)="createEvent('intentional foul')">Intentional</a></li>
-      <li><a (click)="createEvent('ddministrative technical foul')">Administrative</a></li>
-      <li><a (click)="createEvent('coach technical foul')">Coach</a></li>
-    </ul>
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('jumpball')">Jump Ball</a>
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('turnover')">Turnover</a>
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('steal')">Steal</a>
-    <a class="waves-effect waves-light btn-large" (click)="createEvent('assistAttempt')">Assist Atmpt</a>
+    <div class="col s1"></div>
 
-    <!-- Timeout Dropdown -->
-    <a materialize="dropdown" class='dropdown-button waves-effect waves-light btn-large' data-activates='timeoutDropdown'>Timeout</a>
-    <!-- Foul Dropdown Options -->
-    <ul id='timeoutDropdown' class='dropdown-content'>
-      <li><a (click)="createEvent('full timeout')">Full</a></li>
-      <li><a (click)="createEvent('half timeout')">Half</a></li>
-      <li><a (click)="createEvent('official timeout')">Official</a></li>
-      <li><a (click)="createEvent('media timeout')">Media</a></li>
-      <li><a (click)="createEvent('injury timeout')">Injury</a></li>
-    </ul>
   </div>
 
-  <div class="col s1"></div>
-
-</div>
-
-<!-- Event Module -->
-<event [gameID]="game?.id"></event>
+  <!-- Event Module -->
+  <event [gameID]="game?.id"></event>

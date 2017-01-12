@@ -12,12 +12,14 @@ import { EventTypePipe } from './shared/pipes/event-type.pipe';
 import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
 import { AppRoutingModule } from './app-routing.module';
 
-import { PlayerComponent } from './team/player/player';
-import { TimerComponent } from './game/timer/timer';
-import { TeamComponent } from './team/team.component';
-import { RosterComponent } from './game/roster/roster';
-import { GameComponent } from './game/game.component';
+import { CourtComponent } from './game/court/court.component';
 import { EventComponent } from './game/event/event.component';
+import { GameComponent } from './game/game.component';
+import { RosterComponent } from './game/roster/roster';
+import { PlayerComponent } from './team/player/player';
+import { TeamComponent } from './team/team.component';
+import { TimerComponent } from './game/timer/timer';
+
 
 @NgModule({
   imports: [
@@ -33,6 +35,7 @@ import { EventComponent } from './game/event/event.component';
     SecondsAsDigitalClockPipe,
     EventTypePipe,
     CapitalizePipe,
+    CourtComponent,
     GameComponent,
     TimerComponent,
     RosterComponent,
