@@ -17,6 +17,8 @@ export class CourtComponent implements OnInit {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
 
+  shots:Point[] = [];
+
   constructor(
     private eventService: EventService,
     private gameService: GameService,
@@ -36,17 +38,47 @@ export class CourtComponent implements OnInit {
       let x = e.pageX - this.canvas.offsetLeft;
       let y = e.pageY - this.canvas.offsetTop;
       if (x > 0 && x < this.canvas.width && y > 0 && y < this.canvas.height)
-        this.drawX(x, y);
+        this.drawMiss(x, y);
+        this.shots.push(new Point(x,y));
     }
   }
 
-  drawX(x: number, y: number) {
+  drawMiss(x: number, y: number) {
     this.ctx.beginPath();
+    this.ctx.lineWidth = 2;
     this.ctx.strokeStyle = 'red';
     this.ctx.moveTo(x - 5, y - 5);
     this.ctx.lineTo(x + 5, y + 5);
     this.ctx.moveTo(x + 5, y - 5);
     this.ctx.lineTo(x - 5, y + 5);
     this.ctx.stroke();
+  }
+
+  convertToMake(){
+    let p:Point = this.shots.pop();
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = "rgba(255, 153, 0, 0)";
+    this.ctx.arc(p.x, p.y, 6, 0, 2 * Math.PI, false);
+    this.ctx.fillStyle = 'orange';
+    this.ctx.fill();
+          this.ctx.lineWidth = 3;
+      this.ctx.strokeStyle = '#003300';
+    this.ctx.stroke();
+  }
+
+  clearCourt(){
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.drawImage(this.court, 0, 0, this.court.width, this.court.height);
+    this.shots = [];
+  }
+}
+
+export class Point{
+  x:number;
+  y:number;
+
+  constructor(x:number, y:number){
+    this.x = x;
+    this.y = y;
   }
 }
