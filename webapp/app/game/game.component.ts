@@ -51,42 +51,17 @@ export class GameComponent {
   }
 
   createEvent(event: string) {
-
-    //checks to see if a player needs to be selected before creating a new subscription
-    if (!this.subscription) {
-      //get player event emitter as a subscription
-      this.subscription = this.createEventSubscription(event);
-    } else {
-      this.status = "Select an event";
-      this.subscription.unsubscribe();
-      this.subscription = this.createEventSubscription(event);
-    }
-
-  }
-
-  private createEventSubscription(event: string) {
-
     if (this.timerService.getTimer().runTimer)
       this.status = "Select a player";
     else
       this.status = "Start the clock";
-
-    return this.eventService.player$.subscribe(
-      player => {
-        //create new event object & assign params
-        let newEvent: Event = new Event(this.timerService.getTimer().secondsRemaining,
-          this.timerService.getPeriod(), player.id, // player ID 
-          this.eventOptionsSymbolTable.findIndex(str => str == event), this.game.id, this.currentSortID);
-        this.currentSortID++;
-
-        this.eventService.createGameEvent(this.game.id, newEvent);
-        this.subscription.unsubscribe();
-        this.subscription = undefined;
-        this.status = "Select an event";
-      });
+    let newEvent: Event = new Event(this.timerService.getTimer().secondsRemaining,
+      this.timerService.getPeriod(), null,
+      this.eventOptionsSymbolTable.findIndex(str => str == event), this.game.id, null);
+    this.eventService.createGameEvent(this.game.id, newEvent);
   }
 
-  undo(){
+  undo() {
     console.log(this.game.events);
     if (this.game.events.length > 0) {
       this.game.events.pop();
