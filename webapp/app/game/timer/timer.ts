@@ -60,4 +60,19 @@ export class TimerComponent {
         return this.timerService.getDisplayTime();
     }
 
+    addSecond() {
+        this.timerService.changeSecondByOne(true);
+    }
+
+    subtractSecond() {
+        this.timerService.changeSecondByOne(false);
+    }
+
+    addMinute() {
+        this.timerService.changeMinuteByOne(true);
+    }
+
+    subtractMinute() {
+        this.timerService.changeMinuteByOne(false);
+    }
 }

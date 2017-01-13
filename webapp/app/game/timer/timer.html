@@ -2,24 +2,45 @@
     <div class="card-panel">
         <div class="center">
             <div class="period">Period: {{ getPeriod() }}</div>
-                <span class="scoreboard_score">{{getDisplayTime()}}</span>
-                <div class="card-action" >
-                    <a class="btn waves-effect waves-light orange" (click)="newPeriod()" *ngIf="canStartNextPeriod()">
-                        Next Period
-                    </a>
-                    <a class="btn waves-effect waves-light red" (click)="pauseTimer()" *ngIf="getTimer().runTimer && getTimer().hasStarted && !getTimer().hasFinished">
-                        <!--  <ion-icon name="pause"></ion-icon> -->
-                        Pause
-                    </a>
-                    <a class="btn waves-effect waves-light green" (click)="resumeTimer()" *ngIf="!getTimer().runTimer && getTimer().hasStarted && !getTimer().hasFinished">
-                        <!-- <ion-icon name="play"></ion-icon> -->
-                        Resume
-                    </a>
-                    <a class="btn waves-effect waves-light green" (click)="startTimer()" *ngIf="!getTimer().hasStarted">
-                        <!-- <ion-icon name="play"></ion-icon> -->
-                        Start
-                    </a>
+            <div class="row">
+                <div class="col s4">
+                    <div class="collection" *ngIf="getTimer().hasStarted">
+                        <a class="btn waves-effect waves-light white collection-item" (click)="addMinute()">
+                            <i class="material-icons black-text">arrow_drop_up</i>
+                        </a>
+                        <a class="btn waves-effect waves-light white collection-item" (click)="subtractMinute()">
+                            <i class="material-icons black-text">arrow_drop_down</i>
+                        </a>
+                    </div>
                 </div>
+                <div class="col s4">
+                    <span class="scoreboard_score">{{getDisplayTime()}}</span>
+                </div>
+                <div class="col s4">
+                    <div class="collection" *ngIf="getTimer().hasStarted">
+                        <a class="btn waves-effect waves-light white collection-item" (click)="addSecond()">
+                            <i class="material-icons black-text">arrow_drop_up</i>
+                        </a>
+                        <a class="btn waves-effect waves-light white collection-item" (click)="subtractSecond()">
+                            <i class="material-icons black-text">arrow_drop_down</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-action">
+                <a class="btn waves-effect waves-light orange" (click)="newPeriod()" *ngIf="canStartNextPeriod()">
+                    Next Period
+                </a>
+                <a class="btn waves-effect waves-light red" (click)="pauseTimer()" *ngIf="getTimer().runTimer && getTimer().hasStarted && !getTimer().hasFinished">
+                    Pause
+                </a>
+                <a class="btn waves-effect waves-light green" (click)="resumeTimer()" *ngIf="!getTimer().runTimer && getTimer().hasStarted && !getTimer().hasFinished">
+                    Resume
+                </a>
+                <a class="btn waves-effect waves-light green" (click)="startTimer()" *ngIf="!getTimer().hasStarted">
+                    Start
+                </a>
+            </div>
         </div>
     </div>
 </div>

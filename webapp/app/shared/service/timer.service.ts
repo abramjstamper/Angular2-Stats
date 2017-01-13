@@ -6,7 +6,7 @@
 
 
 import { Injectable } from '@angular/core';
-import { Subject }    from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 import { ITimer } from '../interface/ittimer';
 
 @Injectable()
@@ -19,15 +19,15 @@ export class TimerService {
 
   runTimer$ = this.runTimer.asObservable();
 
-  getPeriod(){
+  getPeriod() {
     return this.period;
   }
 
-  setPeriod(period : number){
+  setPeriod(period: number) {
     this.period = period;
   }
 
-  incrementPeriod(){
+  incrementPeriod() {
     this.period += 1;
   }
 
@@ -65,8 +65,30 @@ export class TimerService {
     return this.timer.hasFinished;
   }
 
-  getDisplayTime(){
+  getDisplayTime() {
     return this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
+  }
+
+  changeSecondByOne(add: boolean) {
+    if (add) {
+      this.timer.secondsRemaining++;
+      if (this.timer.hasFinished) {
+        this.timer.hasFinished = false;
+        this.pauseTimer();
+      }
+    } else
+      this.timer.secondsRemaining--;
+  }
+
+  changeMinuteByOne(add: boolean) {
+    if (add) {
+      this.timer.secondsRemaining += 60;
+      if (this.timer.hasFinished) {
+        this.timer.hasFinished = false;
+        this.pauseTimer();
+      }
+    } else
+      this.timer.secondsRemaining -= 60;
   }
 
   timerTick() {

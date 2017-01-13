@@ -61,10 +61,7 @@ export class GameComponent {
     this.eventService.createGameEvent(this.game.id, newEvent);
   }
 
-  undo() {
-    console.log(this.game.events);
-    if (this.game.events.length > 0) {
-      this.game.events.pop();
-    }
+  undo(){
+    this.eventService.undo(this.game.id);
   }
 }
